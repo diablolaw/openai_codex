@@ -4,8 +4,6 @@ import user from "./assets/user.svg";
 const form = document.querySelector("form");
 const chatContainer = document.querySelector("#chat-container");
 
-console.log("test");
-
 let loadInterval;
 
 function loader(element) {
@@ -25,7 +23,7 @@ function typeText(element, text) {
 
   let interval = setInterval(() => {
     if (index < text.length) {
-      element.innnerHTML += text.charAt(index);
+      element.textContent += text.charAt(index);
       index++;
     } else {
       clearInterval(interval);
@@ -91,8 +89,8 @@ const handleSubmit = async (e) => {
     const data = await response.json();
     const parsedData = data.bot.trim();
     console.log(parsedData);
-    messageDiv.innerHTML = parsedData;
-    // typeText(messageDiv, parsedData);
+    // messageDiv.innerHTML = parsedData;
+    typeText(messageDiv, parsedData);
   } else {
     console.log(response);
     const err = await response.json();
